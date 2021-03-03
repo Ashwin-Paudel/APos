@@ -80,6 +80,11 @@ void pchar(char character)
 
     col++;
 }
+// Print just one char
+void pdelete()
+{
+    col--;
+}
 
 // Print multiple chars
 void printf(char *str)

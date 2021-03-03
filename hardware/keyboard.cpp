@@ -115,6 +115,7 @@ char get_ascii_char(uint8_t key_code)
     case KEY_1:
         return '1';
     case KEY_2:
+        // pdelete();
         return '2';
     case KEY_3:
         return '3';

@@ -22,8 +22,6 @@ extern "C" void kernel_main()
     // Test the GDT
     GlobalDescriptorTable gdt;
     // Testing
-    // some code ...
-    gdt.~GlobalDescriptorTable();
     // Print a new line to type keyboard
     pnewLine();
     enableInput();

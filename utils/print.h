@@ -15,4 +15,6 @@ void printf(char *string);
 void psetColor(uint8_t foreground, uint8_t background);
 // Print a new line
 void pnewLine();
+// Delete a charecter
+void pdelete();
 #endif
