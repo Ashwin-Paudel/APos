@@ -1,4 +1,3 @@
-
 #include "utils/print.h"
 #include "utils/colors.h"
 #include "utils/port.h"
@@ -6,8 +5,7 @@
 #include "utils/keyboard.h"
 #include "utils/gdt.h"
 
-
-
+// Since Assembly can only call C files, we need to use extern C to make it a C function
 extern "C" void kernel_main()
 {
 
@@ -20,8 +18,13 @@ extern "C" void kernel_main()
 
     psetColor(white, black);
     // Print the text
-    printf("test");
+    printf("You can type text");
+    // Test the GDT
     GlobalDescriptorTable gdt;
-gdt.~GlobalDescriptorTable();
+    // Testing
+    // some code ...
+    gdt.~GlobalDescriptorTable();
+    // Print a new line to type keyboard
+    pnewLine();
     enableInput();
 }

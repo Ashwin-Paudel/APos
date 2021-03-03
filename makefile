@@ -1,18 +1,18 @@
 # All the cimpiles objects, used to combine to object files into a .bin file
 objects = build/header.o build/print.o build/main64.o build/kernel.o build/main.o build/port.o build/gdt.o build/keyboard.o
 # Parameters for when compiling Gcc
-gccParams = -Wno-write-strings -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore
+gccParams = -Wno-write-strings 
 
 .PHONY: build
 build:
 	# Make a build directory
 	mkdir -p build/x86_64
 	# Compile C++ files
-	x86_64-elf-gcc -c -I utils/ $(gccParams) utils/print.cpp -o build/print.o
-	x86_64-elf-gcc -c -I utils/ $(gccParams) utils/port.cpp -o build/port.o
-	x86_64-elf-gcc -c -I utils/ $(gccParams) kernel.cpp -o build/kernel.o
-	x86_64-elf-gcc -c -I utils/ $(gccParams) utils/keyboard.cpp -o build/keyboard.o
-	x86_64-elf-gcc -c -I utils/ $(gccParams) utils/gdt.cpp -o build/gdt.o
+	x86_64-elf-gcc -c -I $(gccParams) utils/print.cpp -o build/print.o
+	x86_64-elf-gcc -c -I $(gccParams) utils/port.cpp -o build/port.o
+	x86_64-elf-gcc -c -I $(gccParams) kernel.cpp -o build/kernel.o
+	x86_64-elf-gcc -c -I $(gccParams) utils/keyboard.cpp -o build/keyboard.o
+	x86_64-elf-gcc -c -I $(gccParams) utils/gdt.cpp -o build/gdt.o
 	# Compile Assembly files
 	nasm -f elf64 boot/header.asm -o build/header.o
 	nasm -f elf64 boot/main.asm -o build/main.o
