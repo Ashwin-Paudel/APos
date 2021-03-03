@@ -2,6 +2,3 @@
 
 
 An x86_64 C++ operating system
-
-
-# APos
