@@ -8,5 +8,4 @@
 
 extern char get_ascii_char(uint8_t);
 void enableInput();
-
 #endif

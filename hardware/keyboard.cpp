@@ -1,8 +1,19 @@
 #include "keyboard.h"
+
+uint8_t Read8(uint16_t _port)
+{
+    uint8_t result;
+    __asm__ volatile("inb %1, %0"
+                     : "=a"(result)
+                     : "Nd"(_port));
+    return result;
+}
+
 char get_input_keycode()
 {
+
     char ch = 0;
-    while ((ch = port_read(KEYBOARD_PORT)) != 0)
+    while ((ch = Read8(KEYBOARD_PORT)) != 0)
     {
         if (ch > 0)
             return ch;

@@ -1,7 +1,7 @@
 # All the cimpiles objects, used to combine to object files into a .bin file
 objects = build/header.o build/print.o build/main64.o build/kernel.o build/main.o build/port.o build/gdt.o build/keyboard.o
 # Parameters for when compiling Gcc
-gccParams = -fno-rtti -fno-exceptions -Wno-write-strings
+gccParams = -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore -Wno-write-strings
 
 .PHONY: build
 build:
