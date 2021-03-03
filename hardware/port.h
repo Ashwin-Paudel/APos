@@ -1,7 +1,7 @@
 #ifndef PORT_H
 #define PORT_H
 
-#include "types.h"
+#include "../utils/types.h"
 
 // Write to the port
 void port_write(uint16_t port, uint8_t data);

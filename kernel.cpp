@@ -1,9 +1,9 @@
 #include "utils/print.h"
 #include "utils/colors.h"
-#include "utils/port.h"
-#include "utils/keycodes.h"
-#include "utils/keyboard.h"
-#include "utils/gdt.h"
+#include "hardware/port.h"
+#include "hardware/keycodes.h"
+#include "hardware/keyboard.h"
+#include "hardware/gdt.h"
 
 // Since Assembly can only call C files, we need to use extern C to make it a C function
 extern "C" void kernel_main()
