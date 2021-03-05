@@ -7,17 +7,20 @@ GlobalDescriptorTable::GlobalDescriptorTable()
       codeSegmentSelector(0, 64 * 1024 * 1024, 0x9A),
       dataSegmentSelector(0, 64 * 1024 * 1024, 0x92)
 {
+
     uint32_t i[2];
     i[1] = (uint64_t)this;
     i[0] = sizeof(GlobalDescriptorTable) << 16;
     asm volatile("lgdt (%0)"
                  :
                  : "p"(((uint8_t *)i) + 2));
+    pnewLine();
+    printf("Global Descriptor Table Initilized Succsessfully ");
+    pnewLine();
 }
 
 GlobalDescriptorTable::~GlobalDescriptorTable()
 {
-    printf("GDT");
 }
 
 uint16_t GlobalDescriptorTable::DataSegmentSelector()
@@ -77,7 +80,6 @@ GlobalDescriptorTable::SegmentDescriptor::SegmentDescriptor(uint32_t base, uint3
 
 uint32_t GlobalDescriptorTable::SegmentDescriptor::Base()
 {
-    // printf("GDT: Base Called \n")
     uint8_t *target = (uint8_t *)this;
 
     uint32_t result = target[7];

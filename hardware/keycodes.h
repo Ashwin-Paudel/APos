@@ -1,6 +1,11 @@
-#ifndef KEYCODES_H
-#define KEYCODES_H
+#ifndef __APOS__HARDWARE__KEYCODES_H
+#define __APOS__HARDWARE__KEYCODES_H
 
+namespace apos
+{
+    namespace keycodes
+    {
+        const uint16_t porttt = 0x034;
 #define KEYBOARD_PORT 0x60
 
 #define KEY_A 0x1E
@@ -82,4 +87,6 @@
 #define KEY_TAB 0x0F
 #define KEY_UP 0x48
 
+    }
+}
 #endif

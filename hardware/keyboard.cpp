@@ -1,19 +1,11 @@
 #include "keyboard.h"
 
-uint8_t Read8(uint16_t _port)
-{
-    uint8_t result;
-    __asm__ volatile("inb %1, %0"
-                     : "=a"(result)
-                     : "Nd"(_port));
-    return result;
-}
-
 char get_input_keycode()
 {
 
     char ch = 0;
-    while ((ch = Read8(KEYBOARD_PORT)) != 0)
+    Port8Bit keyboardPort;
+    while ((ch = keyboardPort.Read(KEYBOARD_PORT)) != 0)
     {
         if (ch > 0)
             return ch;
@@ -29,12 +21,12 @@ here timer can also be used, but lets do this in looping counter
 
 void wait_for_io(uint32_t timer_count)
 {
-    while (0.01)
+    while (5)
     {
         asm volatile("nop");
         timer_count--;
 
-        if (timer_count == 0)
+        if (timer_count <= 0)
         {
             break;
         }
@@ -43,7 +35,6 @@ void wait_for_io(uint32_t timer_count)
 
 void sleep(uint32_t timer_count)
 {
-    // printf("paused");
     wait_for_io(timer_count);
 }
 
@@ -64,7 +55,7 @@ void enableInput()
             pchar(ch);
         }
         sleep(0x02FFFFFF);
-    } while (ch > 0);
+    } while (1);
 }
 
 char get_ascii_char(uint8_t key_code)
@@ -165,6 +156,6 @@ char get_ascii_char(uint8_t key_code)
     case KEY_SPACE:
         return ' ';
     default:
-        return null;
+        return ' ';
     }
 }

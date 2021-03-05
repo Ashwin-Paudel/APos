@@ -1,7 +1,7 @@
 # All the cimpiles objects, used to combine to object files into a .bin file
 objects = build/header.o build/print.o build/main64.o build/kernel.o build/main.o build/port.o build/gdt.o build/keyboard.o
 # Parameters for when compiling Gcc
-gccParams = -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore -Wno-write-strings
+gccParams = -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore -Wno-write-strings -fno-permissive
 
 .PHONY: build
 build:
@@ -17,6 +17,8 @@ build:
 	nasm -f elf64 boot/header.asm -o build/header.o
 	nasm -f elf64 boot/main.asm -o build/main.o
 	nasm -f elf64 boot/main64.asm -o build/main64.o
+	# nasm -f elf64 boot/load_gdt.s -o build/load_gdt.o
+	# as -f elf64 boot/interruptstubs.s -o build/interruptstubs.o
 	# Combine the object files into a .bin file
 	x86_64-elf-ld -n -o build/x86_64/APos.bin -T linker/linker.ld $(objects)
 	cp build/x86_64/APos.bin isodir/boot/APos.bin
@@ -26,7 +28,7 @@ build:
 .PHONY: run
 run:
 	exit
-	qemu-system-x86_64 build/x86_64/APos.iso
+	qemu-system-x86_64 build/x86_64/APos.iso -serial file:build/serial.log 
 
 .PHONY: docker
 docker:

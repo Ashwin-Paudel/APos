@@ -5,6 +5,10 @@
 #include "hardware/keyboard.h"
 #include "hardware/gdt.h"
 
+using namespace apos::print;
+using namespace apos::types;
+using namespace apos::colors;
+
 // Since Assembly can only call C files, we need to use extern C to make it a C function
 extern "C" void kernel_main()
 {
@@ -15,14 +19,16 @@ extern "C" void kernel_main()
     psetColor(yellow, black);
     // Print the text
     printf("Welcome to the 64 Bit operating system by Ashwin Paudel");
+    GlobalDescriptorTable gdt;
 
     psetColor(white, black);
     // Print the text
     printf("You can type text");
     // Test the GDT
-    GlobalDescriptorTable gdt;
+    // GlobalDescriptorTable gdt;
     // Testing
     // Print a new line to type keyboard
     pnewLine();
+    // init_gdt(); // Initilizating will crash the OS, will work on later
     enableInput();
 }
