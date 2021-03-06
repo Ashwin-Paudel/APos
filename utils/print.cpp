@@ -19,7 +19,7 @@ namespace apos {
         // The the row
         void clear_row(size_t row) {
             struct Char empty = (struct Char) {
-                    character : ' ',
+                    character : 0,
                     color : color,
             };
 
@@ -66,7 +66,7 @@ namespace apos {
             }
 
             buffer[col + NUM_COLS * row] = (struct Char) {
-                    character : (uint8_t) character,
+                    character : character,
                     color : color,
             };
 
