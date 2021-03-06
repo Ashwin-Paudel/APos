@@ -7,7 +7,7 @@ services:
 
 before_install:
   - docker build . -t apos-buildenv
-  -	docker run --rm -it -v "$PWD":/root/env apos-buildenv
+  -	docker run --rm -it -v "$PWD":/root/env apos-buildenv 
 
 script:
   - make all
