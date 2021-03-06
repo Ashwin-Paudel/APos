@@ -7,14 +7,12 @@ assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Write a description of the feature**
+Write what feature you want to add (e.g: A GUI)
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Write why you want this feature, and why it's important**
+Why does this feature help the operating system? 
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
 
 **Additional context**
-Add any other context or screenshots about the feature request here.
+Write additional context if you want it to be done in a specific way
