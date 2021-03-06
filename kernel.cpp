@@ -10,8 +10,7 @@ using namespace apos::types;
 using namespace apos::colors;
 
 // Since Assembly can only call C files, we need to use extern C to make it a C function
-extern "C" void kernel_main()
-{
+extern "C" void kernel_main() {
 
     // Clear the screen
     pclear();
@@ -20,7 +19,6 @@ extern "C" void kernel_main()
     // Print the text
     printf("Welcome to the 64 Bit operating system by Ashwin Paudel");
     GlobalDescriptorTable gdt;
-
     psetColor(white, black);
     // Print the text
     printf("You can type text");
@@ -28,7 +26,8 @@ extern "C" void kernel_main()
     // GlobalDescriptorTable gdt;
     // Testing
     // Print a new line to type keyboard
+//    testFunction();
     pnewLine();
-    // init_gdt(); // Initilizating will crash the OS, will work on later
+
     enableInput();
 }

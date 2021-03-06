@@ -1,10 +1,8 @@
 #ifndef __APOS__HARDWARE__KEYCODES_H
 #define __APOS__HARDWARE__KEYCODES_H
 
-namespace apos
-{
-    namespace keycodes
-    {
+namespace apos {
+    namespace keycodes {
         // const int KEYBOARD_PORT 0x60
         const int KEYBOARD_PORT = 0x060;
         const int KEY_A = 0x1E;

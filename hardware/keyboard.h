@@ -12,5 +12,7 @@ using namespace apos::ports;
 using namespace apos::keycodes;
 
 extern char get_ascii_char(uint8_t);
+
 void enableInput();
+
 #endif

@@ -3,8 +3,10 @@ objects = build/header.o build/print.o build/main64.o build/kernel.o build/main.
 # Parameters for when compiling Gcc
 gccParams = -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore -Wno-write-strings -fno-permissive
 
-.PHONY: build
-build:
+.PHONY: all
+all:
+#	docker build . -t apos-buildenv
+#	docker run --rm -it -v "$$PWD":/root/env apos-buildenv
 	# Make a build directory
 	mkdir -p build/x86_64
 	# Compile C++ files
@@ -17,6 +19,7 @@ build:
 	nasm -f elf64 boot/header.asm -o build/header.o
 	nasm -f elf64 boot/main.asm -o build/main.o
 	nasm -f elf64 boot/main64.asm -o build/main64.o
+
 	# nasm -f elf64 boot/load_gdt.s -o build/load_gdt.o
 	# as -f elf64 boot/interruptstubs.s -o build/interruptstubs.o
 	# Combine the object files into a .bin file

@@ -1,12 +1,9 @@
 
 #ifndef __APOS__UTILS__COLORS_H
 #define __APOS__UTILS__COLORS_H
-namespace apos
-{
-    namespace colors
-    {
-        enum
-        {
+namespace apos {
+    namespace colors {
+        enum {
             black = 0,
             blue = 1,
             green = 2,

@@ -8,10 +8,8 @@
 #ifndef __APOS__UTILS__TYPES_H
 #define __APOS__UTILS__TYPES_H
 
-namespace apos
-{
-    namespace types
-    {
+namespace apos {
+    namespace types {
 
         typedef char int8_t;
         typedef unsigned char uint8_t;
