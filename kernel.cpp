@@ -10,12 +10,11 @@ using namespace apos::print;
 using namespace apos::types;
 using namespace apos::colors;
 
-unsigned int MyRand(unsigned int start_range,unsigned int end_range)
-{
+unsigned int MyRand(unsigned int start_range, unsigned int end_range) {
     static unsigned int rand = 0xACE1U; /* Any nonzero start state will work. */
 
     /*check for valid range.*/
-    if(start_range == end_range) {
+    if (start_range == end_range) {
         return start_range;
     }
 
@@ -24,7 +23,7 @@ unsigned int MyRand(unsigned int start_range,unsigned int end_range)
     rand %= end_range;
 
     /*get the random in start-range.*/
-    while(rand < start_range){
+    while (rand < start_range) {
         rand = rand + end_range - start_range;
     }
 
@@ -44,7 +43,7 @@ extern "C" void kernel_main() {
     psetColor(white, black);
     // Print the text
     // 1..10
-   APOSLogo(MyRand(0, 9));
+    APOSLogo(MyRand(0, 9));
     pnewLine();
 //rand();
     // Test the GDT

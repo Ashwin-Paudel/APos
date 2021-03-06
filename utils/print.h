@@ -12,6 +12,7 @@ namespace apos {
     namespace print {
         // Clear the screen
         void pclear();
+
 // Print a hex
         void printfHex(uint8_t key);
 

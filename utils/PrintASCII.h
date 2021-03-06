@@ -8,6 +8,7 @@
 #include "print.h"
 
 using namespace apos::print;
+
 void APOSLogo(int item) {
     if (item == 0) {
         printf(R""""(
@@ -124,7 +125,6 @@ _  ___ |  ____// /_/ /____/ /
                )"""");
     }
 }
-
 
 
 #endif //APOS_PRINTASCII_H
