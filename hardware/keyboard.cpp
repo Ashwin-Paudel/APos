@@ -2,7 +2,7 @@
 
 char get_input_keycode() {
 
-    char ch = 0;
+    char ch;
     Port8Bit keyboardPort;
     while ((ch = keyboardPort.Read(KEYBOARD_PORT)) != 0) {
         if (ch > 0)
@@ -33,8 +33,8 @@ void sleep(uint32_t timer_count) {
 }
 
 void enableInput() {
-    char ch = 0;
-    char keycode = 0;
+    char ch;
+    char keycode;
     do {
         keycode = get_input_keycode();
         if (keycode == KEY_ENTER) {
