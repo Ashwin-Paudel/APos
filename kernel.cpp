@@ -4,10 +4,32 @@
 #include "hardware/keycodes.h"
 #include "hardware/keyboard.h"
 #include "hardware/gdt.h"
+#include "utils/PrintASCII.h"
 
 using namespace apos::print;
 using namespace apos::types;
 using namespace apos::colors;
+
+unsigned int MyRand(unsigned int start_range,unsigned int end_range)
+{
+    static unsigned int rand = 0xACE1U; /* Any nonzero start state will work. */
+
+    /*check for valid range.*/
+    if(start_range == end_range) {
+        return start_range;
+    }
+
+    /*get the random in end-range.*/
+    rand += 0x3AD;
+    rand %= end_range;
+
+    /*get the random in start-range.*/
+    while(rand < start_range){
+        rand = rand + end_range - start_range;
+    }
+
+    return rand;
+}
 
 // Since Assembly can only call C files, we need to use extern C to make it a C function
 extern "C" void kernel_main() {
@@ -21,13 +43,17 @@ extern "C" void kernel_main() {
     GlobalDescriptorTable gdt;
     psetColor(white, black);
     // Print the text
-    printf("You can type text");
+    // 1..10
+   APOSLogo(MyRand(0, 9));
+    pnewLine();
+//rand();
     // Test the GDT
     // GlobalDescriptorTable gdt;
     // Testing
+
     // Print a new line to type keyboard
-//    testFunction();
     pnewLine();
+//    PRINTAP();
 
     enableInput();
 }

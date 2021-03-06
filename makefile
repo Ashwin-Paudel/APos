@@ -6,7 +6,7 @@ gccParams = -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-exceptions
 .PHONY: all
 all:
 #	docker build . -t apos-buildenv
-#	docker run --rm -it -v "$$PWD":/root/env apos-buildenv
+#	docker run --rm -it -v "$PWD":/root/env apos-buildenv
 	# Make a build directory
 	mkdir -p build/x86_64
 	# Compile C++ files

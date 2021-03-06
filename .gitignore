@@ -3,3 +3,4 @@ build
 .DS_Store
 isodir/boot/APos.bin
 .idea
+isodir/boot/APos.bin

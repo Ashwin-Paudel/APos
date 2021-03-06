@@ -40,11 +40,14 @@ void enableInput() {
         if (keycode == KEY_ENTER) {
             pnewLine();
         } else {
+
             ch = get_ascii_char(keycode);
+//            printf(ch);
+//            printf(keycode);
             pchar(ch);
         }
         sleep(0x02FFFFFF);
-    } while (1);
+    } while (0.05);
 }
 
 char get_ascii_char(uint8_t key_code) {
@@ -104,7 +107,6 @@ char get_ascii_char(uint8_t key_code) {
         case KEY_1:
             return '1';
         case KEY_2:
-            // pdelete();
             return '2';
         case KEY_3:
             return '3';
@@ -143,6 +145,7 @@ char get_ascii_char(uint8_t key_code) {
         case KEY_SPACE:
             return ' ';
         default:
+            pchar((char) key_code);
             return ' ';
     }
 }

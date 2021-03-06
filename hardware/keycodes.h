@@ -1,6 +1,9 @@
 #ifndef __APOS__HARDWARE__KEYCODES_H
 #define __APOS__HARDWARE__KEYCODES_H
 
+#include "../utils/print.h"
+
+using namespace apos::print;
 namespace apos {
     namespace keycodes {
         // const int KEYBOARD_PORT 0x60
@@ -83,6 +86,7 @@ namespace apos {
         const int KEY_SPACE = 0x39;
         const int KEY_TAB = 0x0F;
         const int KEY_UP = 0x48;
+        const int KEY_SHIFT = 0xe1;
     }
 }
 #endif

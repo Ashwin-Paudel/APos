@@ -13,6 +13,10 @@ long_mode_start:
     mov es, ax
     mov fs, ax
     mov gs, ax
-
     call kernel_main
     hlt
+    int 0x80
+
+
+innnnnteerrruptssss:
+    int 0x20
