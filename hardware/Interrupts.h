@@ -14,6 +14,7 @@
 
 using namespace apos::print;
 using namespace apos::ports;
+using namespace apos::types;
 class InterruptManager
 {
     //friend class InterruptHandler;

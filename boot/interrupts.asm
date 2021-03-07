@@ -1,25 +1,25 @@
-// Code doesn't compile so leave blank before compiling
-.set IRQ_BASE, 0x20
+; Code doesn't compile so leave blank before compiling
+set IRQ_BASE, 0x20
 
-.section .text
+section .text
 
-.extern _ZN16InterruptManager15HandleInterruptEhj
+extern _ZN16InterruptManager15HandleInterruptEhj
 
 
- .macro HandleException num
-.global _ZN16InterruptManager19HandleException\num\()Ev
+.macro HandleException num
+global _ZN16InterruptManager19HandleException\num\()Ev
 _ZN16InterruptManager19HandleException\num\()Ev:
     movb $\num, (interruptnumber)
     jmp int_bottom
-.endm
+endm
 
 
-.macro HandleInterruptRequest num
-.global _ZN16InterruptManager26HandleInterruptRequest\num\()Ev
+macro HandleInterruptRequest num
+global _ZN16InterruptManager26HandleInterruptRequest\num\()Ev
 _ZN16InterruptManager26HandleInterruptRequest\num\()Ev:
     movb $\num + IRQ_BASE, (interruptnumber)
     jmp int_bottom
-.endm
+endm
 
 
 HandleException 0x00
@@ -63,38 +63,38 @@ HandleInterruptRequest 0x31
 
 int_bottom:
 
-    # register sichern
+    ; register sichern
     pusha
     pushl %ds
     pushl %es
     pushl %fs
     pushl %gs
 
-    # ring 0 segment register laden
-    #cld
-    #mov $0x10, %eax
-    #mov %eax, %eds
-    #mov %eax, %ees
+    ; ring 0 segment register laden
+    ;cld
+    ;mov $0x10, %eax
+    ;mov %eax, %eds
+    ;mov %eax, %ees
 
-    # C++ Handler aufrufen
+    ; C++ Handler aufrufen
     pushl %esp
     push (interruptnumber)
     call _ZN16InterruptManager15HandleInterruptEhj
     add %esp, 6
-    mov %eax, %esp # den stack wechseln
+    mov %eax, %esp ; den stack wechseln
 
-    # register laden
+    ; register laden
     pop %gs
     pop %fs
     pop %es
     pop %ds
     popa
 
-.global _ZN16InterruptManager15InterruptIgnoreEv
+global _ZN16InterruptManager15InterruptIgnoreEv
 _ZN16InterruptManager15InterruptIgnoreEv:
 
     iret
 
 
-.data
-    interruptnumber: .byte 0
+section .data
+    interruptnumber: byte 0

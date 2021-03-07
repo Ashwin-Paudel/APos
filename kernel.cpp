@@ -5,10 +5,15 @@
 #include "hardware/keyboard.h"
 #include "hardware/gdt.h"
 #include "utils/PrintASCII.h"
+#include "utils/APosInfo.h"
+#include "hardware/cursor.h"
+//#include "hardware/Interrupts.h"
 
 using namespace apos::print;
 using namespace apos::types;
 using namespace apos::colors;
+using namespace apos::osInfo;
+using namespace apos::cursor;
 
 unsigned int MyRand(unsigned int start_range, unsigned int end_range) {
     static unsigned int rand = 0xACE1U; /* Any nonzero start state will work. */
@@ -39,11 +44,24 @@ extern "C" void kernel_main() {
     psetColor(yellow, black);
     // Print the text
     printf("Welcome to the 64 Bit operating system by Ashwin Paudel");
-    GlobalDescriptorTable gdt;
+//    GlobalDescriptorTable gdt;
     psetColor(white, black);
     // Print the text
     // 1..10
     APOSLogo(MyRand(0, 9));
+//    printf(APosInfo().versionNumber());
+    printf("");
+
+//    APosInfo osInfo;
+    printf(apos::osInfo::aposInformation());
+
+test_input();
+
+
+
+//    GlobalDescriptorTable gdt;
+//    InterruptManager interrupts(0x20, &gdt);
+//    interrupts.Activate();
     pnewLine();
 //rand();
     // Test the GDT
