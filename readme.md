@@ -4,3 +4,5 @@ An x86_64 C++ operating system
 
 For build instructions, visit:
 https://github.com/Ashwin-Paudel/APos/wiki/Building
+
+![Alt text](image/Screen%20Shot%202021-03-06%20at%208.55.38%20PM.png)
