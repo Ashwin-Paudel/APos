@@ -8,8 +8,9 @@ namespace apos {
     namespace cursor {
         void disable_cursor()
         {
-            outb(0x3D4, 0x0A);
-            outb(0x3D5, 0x20);
+            Port8Bit mousePort;
+            mousePort.Write(0x3D4, 0x0A);
+            mousePort.Write(0x3D5, 0x20);
         }
         uint16_t get_cursor_position()
         {
