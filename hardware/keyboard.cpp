@@ -1,5 +1,13 @@
+//
+//  keyboard.cpp
+//  APos
+//
+//  Created by Ashwin Paudel on 2021-03-03.
+//
+
 #include "keyboard.h"
 #include "cursor.h"
+
 char get_input_keycode() {
 
     char ch;
@@ -32,13 +40,15 @@ void sleep(uint32_t timer_count) {
     wait_for_io(timer_count);
 }
 
-void enableInput() {
+void enableKeyboard() {
     char ch;
     char keycode;
     do {
         keycode = get_input_keycode();
         if (keycode == KEY_ENTER) {
             pnewLine();
+            while (1)
+                apos::cursor::test_input();
         } else {
 
             ch = get_ascii_char(keycode);

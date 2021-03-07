@@ -1,5 +1,8 @@
 //
-// Created by Ashwin Paudel on 2021-03-06.
+//  gdt.cpp
+//  APos
+//
+//  Created by Ashwin Paudel on 2021-03-06.
 //
 
 #include "cursor.h"
@@ -23,25 +26,61 @@ namespace apos {
             return x;
         }
 
-        uint16_t getCursorY() {
+        uint16_t getCursor() {
             Port8Bit mousePort;
-            uint16_t x = 0;
-            uint16_t y = 0;
+            uint16_t pos = 0;
             mousePort.Write(0x3D4, 0x0F);
-            x |= mousePort.Read(0x3D5);
+            pos |= mousePort.Read(0x3D5);
             mousePort.Write(0x3D4, 0x0E);
-            y |= ((uint16_t) mousePort.Read(0x3D5)) << 8;
-            return y;
+            pos |= ((uint16_t) mousePort.Read(0x3D5)) << 8;
+            return pos;
         }
 
-        void test_input() {
+        uint16_t get_cursor_position(void) {
+            Port8Bit mousePort;
+            uint16_t pos = 0;
+            mousePort.Write(0x3D4, 0x0F);
+            pos |= mousePort.Read(0x3D5);
+            mousePort.Write(0x3D4, 0x0E);
+            pos |= ((uint16_t) mousePort.Read(0x3D5)) << 8;
+            return pos;
+        }
+
+        void wait_for_io(uint32_t timer_count) {
+            while (5) {
+                asm volatile("nop");
+                timer_count--;
+
+                if (timer_count <= 0) {
+                    break;
+                }
+            }
+        }
+
+        void update_cursor(int x, int y) {
+            Port8Bit mousePort;
+
+            uint16_t pos = y + x;
+
+            mousePort.Write(0x3D4, 0x0F);
+            mousePort.Write(0x3D5, (uint8_t) (pos & 0xFF));
+            mousePort.Write(0x3D4, 0x0E);
+            mousePort.Write(0x3D5, (uint8_t) ((pos >> 8) & 0xFF));
+        }
+
+        void enableMouse() {
             Port8Bit cursor;
             uint16_t *VideoMemory = (uint16_t *) 0xb8000;
             int offset = 0;
             int buttons = 0;
 
-            int x = getCursorX();
-            int y = getCursorY();
+            int x = get_cursor_position();
+            int y = get_cursor_position();
+            update_cursor(x, y);
+//            while (true) {
+//                x = getCursorY();
+//                y = getCursorX();
+//            }
 
             VideoMemory[80 * y + x] = (VideoMemory[80 * y + x] & 0x0F00) << 4
                                       | (VideoMemory[80 * y + x] & 0xF000) >> 4
@@ -56,8 +95,7 @@ namespace apos {
             cursor.Write(0xD4, 0x60);
             cursor.Write(0xF4, 0x60);
             cursor.Read(0x60);
-
-
+            wait_for_io(0x02FFFFFF);
         }
     }
 }

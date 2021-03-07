@@ -1,3 +1,10 @@
+//
+//  gdt.h
+//  APos
+//
+//  Created by Ashwin Paudel on 2021-03-05.
+//
+
 #ifndef __APOS__HARDWARE__GDT_H
 #define __APOS__HARDWARE__GDT_H
 

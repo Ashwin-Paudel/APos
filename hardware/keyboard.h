@@ -1,3 +1,10 @@
+//
+//  keyboard.h
+//  APos
+//
+//  Created by Ashwin Paudel on 2021-03-03.
+//
+
 #ifndef __APOS__HARDWARE__KEYBOARD_H
 #define __APOS__HARDWARE__KEYBOARD_H
 
@@ -13,6 +20,6 @@ using namespace apos::keycodes;
 
 extern char get_ascii_char(uint8_t);
 
-void enableInput();
+void enableKeyboard();
 
 #endif

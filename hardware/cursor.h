@@ -1,5 +1,8 @@
 //
-// Created by Ashwin Paudel on 2021-03-06.
+//  gdt.cpp
+//  APos
+//
+//  Created by Ashwin Paudel on 2021-03-06.
 //
 
 #ifndef APOS_CURSOR_H
@@ -10,7 +13,7 @@
 using namespace apos::ports;
 namespace apos {
     namespace cursor {
-        void test_input();
+        void enableMouse();
     }
 }
 
