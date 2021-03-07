@@ -42,10 +42,6 @@ namespace apos {
 
             int x = getCursorX();
             int y = getCursorY();
-            while (true) {
-                x = getCursorY();
-                y = getCursorX();
-            }
 
             VideoMemory[80 * y + x] = (VideoMemory[80 * y + x] & 0x0F00) << 4
                                       | (VideoMemory[80 * y + x] & 0xF000) >> 4
@@ -60,6 +56,8 @@ namespace apos {
             cursor.Write(0xD4, 0x60);
             cursor.Write(0xF4, 0x60);
             cursor.Read(0x60);
+
+
         }
     }
 }

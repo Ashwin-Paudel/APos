@@ -1,5 +1,5 @@
 #include "keyboard.h"
-
+#include "cursor.h"
 char get_input_keycode() {
 
     char ch;
@@ -144,6 +144,9 @@ char get_ascii_char(uint8_t key_code) {
             return '/';
         case KEY_SPACE:
             return ' ';
+        case KEY_ENTER:
+//apos::cursor::test_input();
+            return '\n';
         default:
             pchar((char) key_code);
             return ' ';
