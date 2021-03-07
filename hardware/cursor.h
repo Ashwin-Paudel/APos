@@ -9,8 +9,10 @@
 #define APOS_CURSOR_H
 
 #include "port.h"
+#include "../utils/print.h"
 
 using namespace apos::ports;
+using namespace apos::print;
 namespace apos {
     namespace cursor {
         void enableMouse();

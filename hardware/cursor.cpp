@@ -36,15 +36,15 @@ namespace apos {
             return pos;
         }
 
-        uint16_t get_cursor_position(void) {
-            Port8Bit mousePort;
-            uint16_t pos = 0;
-            mousePort.Write(0x3D4, 0x0F);
-            pos |= mousePort.Read(0x3D5);
-            mousePort.Write(0x3D4, 0x0E);
-            pos |= ((uint16_t) mousePort.Read(0x3D5)) << 8;
-            return pos;
-        }
+//        uint16_t get_cursor_position(void) {
+//            Port8Bit mousePort;
+//            uint16_t pos = 0;
+//            mousePort.Write(0x3D4, 0x0F);
+//            pos |= mousePort.Read(0x3D5);
+//            mousePort.Write(0x3D4, 0x0E);
+//            pos |= ((uint16_t) mousePort.Read(0x3D5)) << 8;
+//            return pos;
+//        }
 
         void wait_for_io(uint32_t timer_count) {
             while (5) {
@@ -56,17 +56,17 @@ namespace apos {
                 }
             }
         }
-
-        void update_cursor(int x, int y) {
-            Port8Bit mousePort;
-
-            uint16_t pos = y + x;
-
-            mousePort.Write(0x3D4, 0x0F);
-            mousePort.Write(0x3D5, (uint8_t) (pos & 0xFF));
-            mousePort.Write(0x3D4, 0x0E);
-            mousePort.Write(0x3D5, (uint8_t) ((pos >> 8) & 0xFF));
-        }
+//
+//        void update_cursor(int x, int y) {
+//            Port8Bit mousePort;
+//
+//            uint16_t pos = y + x;
+//
+//            mousePort.Write(0x3D4, 0x0F);
+//            mousePort.Write(0x3D5, (uint8_t) (pos & 0xFF));
+//            mousePort.Write(0x3D4, 0x0E);
+//            mousePort.Write(0x3D5, (uint8_t) ((pos >> 8) & 0xFF));
+//        }
 
         void enableMouse() {
             Port8Bit cursor;
@@ -74,9 +74,10 @@ namespace apos {
             int offset = 0;
             int buttons = 0;
 
-            int x = get_cursor_position();
-            int y = get_cursor_position();
-            update_cursor(x, y);
+            int x = getCursor();
+            int y = getCursor();
+//            update_cursor(x, y);
+            printf((char)getCursor());
 //            while (true) {
 //                x = getCursorY();
 //                y = getCursorX();

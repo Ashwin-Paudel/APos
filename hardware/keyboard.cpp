@@ -48,7 +48,7 @@ void enableKeyboard() {
         if (keycode == KEY_ENTER) {
             pnewLine();
             while (1)
-                apos::cursor::test_input();
+                apos::cursor::enableMouse();
         } else {
 
             ch = get_ascii_char(keycode);
