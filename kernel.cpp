@@ -55,7 +55,7 @@ extern "C" void kernel_main() {
 //    APosInfo osInfo;
     printf(apos::osInfo::aposInformation());
 
-test_input();
+    test_input();
 
 
 
