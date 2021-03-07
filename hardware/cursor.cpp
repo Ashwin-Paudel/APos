@@ -12,29 +12,39 @@ namespace apos {
             mousePort.Write(0x3D4, 0x0A);
             mousePort.Write(0x3D5, 0x20);
         }
-        uint16_t get_cursor_position()
+        uint16_t getCursorX()
         {
             Port8Bit mousePort;
-            uint16_t pos = 0;
+            uint16_t x = 0;
+            uint16_t y = 0;
             mousePort.Write(0x3D4, 0x0F);
-            pos |= mousePort.Read(0x3D5);
+            x |= mousePort.Read(0x3D5);
             mousePort.Write(0x3D4, 0x0E);
-            pos |= ((uint16_t)mousePort.Read(0x3D5)) << 8;
-            return pos;
+            y |= ((uint16_t)mousePort.Read(0x3D5)) << 8;
+            return x;
+        }
+        uint16_t getCursorY()
+        {
+            Port8Bit mousePort;
+            uint16_t x = 0;
+            uint16_t y = 0;
+            mousePort.Write(0x3D4, 0x0F);
+            x |= mousePort.Read(0x3D5);
+            mousePort.Write(0x3D4, 0x0E);
+            y |= ((uint16_t)mousePort.Read(0x3D5)) << 8;
+            return y;
         }
         void test_input() {
             Port8Bit cursor;
             uint16_t* VideoMemory = (uint16_t*)0xb8000;
             int offset = 0;
             int buttons = 0;
-            int sdfsadf = 0;
 
-            int x = get_cursor_position();
-            int y = get_cursor_position();
-            for (;;) {
-                x = get_cursor_position();
-                y = get_cursor_position();
-
+            int x = getCursorX();
+            int y = getCursorY();
+            while (true) {
+                 x = getCursorY();
+                 y = getCursorX();
             }
 
             VideoMemory[80*y+x] = (VideoMemory[80*y+x] & 0x0F00) << 4
