@@ -25,20 +25,6 @@ so that io port will not be processed by cpu
 here timer can also be used, but lets do this in looping counter
 */
 
-void wait_for_io(uint32_t timer_count) {
-    while (5) {
-        asm volatile("nop");
-        timer_count--;
-
-        if (timer_count <= 0) {
-            break;
-        }
-    }
-}
-
-void sleep(uint32_t timer_count) {
-    wait_for_io(timer_count);
-}
 
 void enableKeyboard() {
     char ch;
@@ -158,7 +144,7 @@ char get_ascii_char(uint8_t key_code) {
 //apos::cursor::test_input();
             return '\n';
         default:
-            pchar((char) key_code);
+//            pchar((char) key_code);
             return ' ';
     }
 }

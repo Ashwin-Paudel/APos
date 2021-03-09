@@ -46,16 +46,7 @@ namespace apos {
 //            return pos;
 //        }
 
-        void wait_for_io(uint32_t timer_count) {
-            while (5) {
-                asm volatile("nop");
-                timer_count--;
 
-                if (timer_count <= 0) {
-                    break;
-                }
-            }
-        }
 //
 //        void update_cursor(int x, int y) {
 //            Port8Bit mousePort;
@@ -74,10 +65,10 @@ namespace apos {
             int offset = 0;
             int buttons = 0;
 
-            int x = getCursor();
-            int y = getCursor();
+            int x = 50;
+            int y = 20;
 //            update_cursor(x, y);
-            printf((char)getCursor());
+            printf((char) getCursor());
 //            while (true) {
 //                x = getCursorY();
 //                y = getCursorX();
@@ -96,7 +87,8 @@ namespace apos {
             cursor.Write(0xD4, 0x60);
             cursor.Write(0xF4, 0x60);
             cursor.Read(0x60);
-            wait_for_io(0x02FFFFFF);
+//            sleep(0x02FFFFFF);
+            sleep::sleep(0x02FFFFFF);
         }
     }
 }

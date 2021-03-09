@@ -5,132 +5,116 @@
 #include "isr.h"
 
 
-static struct registers* current_regs = 0;
+static struct registers *current_regs = 0;
 
 // if no interrupt found then push interrupt no into stack
 // for int instruction
-void isr_0()
-{
+void isr_0() {
     asm volatile("\tcli");
     asm volatile("\tpush $0");
     asm volatile("\tpush $0");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_1()
-{
+void isr_1() {
     asm volatile("\tcli");
     asm volatile("\tpush $1");
     asm volatile("\tpush $1");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_2()
-{
+void isr_2() {
     asm volatile("\tcli");
     asm volatile("\tpush $2");
     asm volatile("\tpush $2");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_3()
-{
+void isr_3() {
     asm volatile("\tcli");
     asm volatile("\tpush $3");
     asm volatile("\tpush $3");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_4()
-{
+void isr_4() {
     asm volatile("\tcli");
     asm volatile("\tpush $4");
     asm volatile("\tpush $4");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_5()
-{
+void isr_5() {
     asm volatile("\tcli");
     asm volatile("\tpush $5");
     asm volatile("\tpush $5");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_6()
-{
+void isr_6() {
     asm volatile("\tcli");
     asm volatile("\tpush $6");
     asm volatile("\tpush $6");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_7()
-{
+void isr_7() {
     asm volatile("\tcli");
     asm volatile("\tpush $7");
     asm volatile("\tpush $7");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_8()
-{
+void isr_8() {
     asm volatile("\tcli");
     asm volatile("\tpush $8");
     asm volatile("\tpush $8");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_9()
-{
+void isr_9() {
     asm volatile("\tcli");
     asm volatile("\tpush $9");
     asm volatile("\tpush $9");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_10()
-{
+void isr_10() {
     asm volatile("\tcli");
     asm volatile("\tpush $10");
     asm volatile("\tpush $10");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_11()
-{
+void isr_11() {
     asm volatile("\tcli");
     asm volatile("\tpush $11");
     asm volatile("\tpush $11");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_12()
-{
+void isr_12() {
     asm volatile("\tcli");
     asm volatile("\tpush $12");
     asm volatile("\tpush $12");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_13()
-{
+void isr_13() {
     asm volatile("\tcli");
     asm volatile("\tpush $13");
     asm volatile("\tpush $13");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_14()
-{
+void isr_14() {
     asm volatile("\tcli");
     asm volatile("\tpush $14");
     asm volatile("\tpush $14");
     asm volatile("\tjmp common_isr_stub_handler");
 }
 
-void isr_15()
-{
+void isr_15() {
     asm volatile("\tcli");
     asm volatile("\tpush $15");
     asm volatile("\tpush $15");
@@ -140,8 +124,7 @@ void isr_15()
 // this is common for all isrn
 // it saves processor state, segments, flags
 // some info automatically saved by processor itself
-void common_isr_stub_handler()
-{
+void common_isr_stub_handler() {
     // save all registers
     asm volatile("\tpusha");
     // save ds segment
@@ -174,10 +157,9 @@ void common_isr_stub_handler()
 }
 
 
-void isr_handler(struct registers regs)
-{
-    current_regs = (struct registers*)&regs;
-    switch(regs.int_no){
+void isr_handler(struct registers regs) {
+    current_regs = (struct registers *) &regs;
+    switch (regs.int_no) {
         case 0:
             isr_0_handler();
             break;
@@ -233,9 +215,8 @@ void isr_handler(struct registers regs)
     current_regs = 0;
 }
 
-void isr_0_handler()
-{
-    if(current_regs == 0)
+void isr_0_handler() {
+    if (current_regs == 0)
         return;
     printf("isr_0_handler called,  ");
     printf("Value of eax: ");
@@ -243,77 +224,62 @@ void isr_0_handler()
     printf("\n");
 }
 
-void isr_1_handler()
-{
+void isr_1_handler() {
     printf("isr_1_handler called\n");
 }
 
-void isr_2_handler()
-{
+void isr_2_handler() {
     printf("isr_2_handler called\n");
 }
 
-void isr_3_handler()
-{
+void isr_3_handler() {
     printf("isr_3_handler called\n");
 }
 
-void isr_4_handler()
-{
+void isr_4_handler() {
     printf("isr_4_handler called\n");
 }
 
-void isr_5_handler()
-{
+void isr_5_handler() {
     printf("isr_5_handler called\n");
 }
 
-void isr_6_handler()
-{
+void isr_6_handler() {
     printf("isr_6_handler called\n");
 }
 
-void isr_7_handler()
-{
+void isr_7_handler() {
     printf("isr_7_handler called\n");
 }
 
-void isr_8_handler()
-{
+void isr_8_handler() {
     printf("isr_8_handler called\n");
 }
 
-void isr_9_handler()
-{
+void isr_9_handler() {
     printf("isr_9_handler called\n");
 }
 
-void isr_10_handler()
-{
+void isr_10_handler() {
     printf("isr_10_handler called\n");
 }
 
-void isr_11_handler()
-{
+void isr_11_handler() {
     printf("isr_11_handler called\n");
 }
 
-void isr_12_handler()
-{
+void isr_12_handler() {
     printf("isr_12_handler called\n");
 }
 
-void isr_13_handler()
-{
+void isr_13_handler() {
     printf("isr_13_handler called\n");
 }
 
-void isr_14_handler()
-{
+void isr_14_handler() {
     printf("isr_14_handler called\n");
 }
 
-void isr_15_handler()
-{
+void isr_15_handler() {
     printf("isr_15_handler called\n");
 }

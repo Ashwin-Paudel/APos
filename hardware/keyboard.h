@@ -12,11 +12,13 @@
 #include "keycodes.h"
 #include "port.h"
 #include "../utils/print.h"
+#include "Sleep.h"
 
 using namespace apos::types;
 using namespace apos::print;
 using namespace apos::ports;
 using namespace apos::keycodes;
+using namespace apos::sleep;
 
 extern char get_ascii_char(uint8_t);
 
